@@ -11,8 +11,6 @@ services:
     image: onnimonni/unison
     environment:
       - UNISON_DIR=/tmp/unison
-#      - UNISON_UID=${APP_UID}
-#      - UNISON_GID=${APP_GID}
     ports:
       - "5000:5000"
     volumes:
