@@ -1,0 +1,23 @@
+version: '3'
+services:
+  nginx:
+    image: httpd:2.4
+    volumes:
+      - app-code:/usr/local/apache2/htdocs/
+    ports:
+      - "8080:80"
+
+  unison:
+    image: onnimonni/unison
+    environment:
+      - UNISON_DIR=/tmp/unison
+#      - UNISON_UID=${APP_UID}
+#      - UNISON_GID=${APP_GID}
+    ports:
+      - "5000:5000"
+    volumes:
+      - app-code:/tmp/unison
+    restart: always
+
+volumes:
+  app-code:
