@@ -1,7 +1,6 @@
 :LOOP
     .\unison\unison . socket://192.168.99.100:5000/ ^
-        -repeat ^
-        watch ^
+        -repeat watch ^
         -auto ^
         -batch ^
         -prefer newer ^

@@ -1,21 +1,22 @@
 version: '3'
 services:
-  httpd:
-    image: httpd:2.4
-    volumes:
-      - app-code:/usr/local/apache2/htdocs/
-    ports:
-      - "8080:80"
-
+  # Unisonサーバー
   unison:
     image: onnimonni/unison
     environment:
-      - UNISON_DIR=/tmp/unison
+      - UNISON_DIR=/tmp/unison # 同期したファイルを書き込むフォルダ
     ports:
       - "5000:5000"
     volumes:
-      - app-code:/tmp/unison
+      - app-code:/tmp/unison # Dockerボリュームに同期したファイルを書き込ませている
     restart: always
 
+  # その他のソースコードを参照するコンテナ
+  apache:
+    image: httpd:2.4
+    volumes:
+      - app-code:/usr/local/apache2/htdocs/ # その他のコンテナにもDockerボリューム経由でソースコードを共有する
+    ports:
+      - "8080:80"
 volumes:
   app-code:
